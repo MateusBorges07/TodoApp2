@@ -12,8 +12,48 @@ import java.util.List;
 import java.sql.Date;
 
 
+
 public class TaskController {
-    public void save(){
+    public void save(Task task){
+        String sql = "INSERT INTO tasks (idProject"
+                +"name,"
+                +"description"
+                +"completed,"
+                +"notes"
+                +"deadline,"
+                +"createdAt"
+                +"updateAt) VALUES (?,?,?,?,?,?,?,?)";
+
+        Connection connection =null;
+        PreparedStatement statement =null;
+
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, task.getIdProject());
+            statement.setString(2, task.getName());
+            statement.setString(3, task.getDescription());
+            statement.setBoolean(4,task.isIsCompleted());
+            statement.setString(5,task.getNodes());
+            statement.setDate(6, new Date(task.getDeadline().getTime()));
+            statement.setDate(7, new Date(task.getCreatedAt().getTime()));
+            statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
+            statement.execute();
+
+        }catch (Exception ex){
+            throw new RuntimeException("ERRO ao salvar a tarefa"+ ex.getMessage(), ex);
+
+        }finally {
+                ConnectionFactory.closeConecction(connection, statement);
+        }
+
+
+
+
+
+
+
 
     }
 
@@ -45,9 +85,9 @@ public class TaskController {
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
             statement.setString(4, task.getNodes());
-            statement.setBoolean(5, task.isCompleted());
+            statement.setBoolean(5, task.isIsCompleted());
             statement.setDate(6, new Date (task.getDeadline().getTime()));
-            statement.setDate(7, new Date (task.getCreatedAt().getTime()));
+            statement.setDate(7, new Date(task.getCreatedAt().getTime()));
             statement.setDate(8, new Date (task.getUpdatedAt().getTime()));
             statement.setInt(9,task.getId());
 
@@ -110,7 +150,7 @@ public class TaskController {
             while (resultSet.next()){
                 Task task = new Task();
                 task.setId(resultSet.getInt("id"));
-                task.setIdProject(resultSet.getInt("idProjetcct"));
+                task.setIdProject(resultSet.getInt("idProject"));
                 task.setName(resultSet.getString("name"));
                 task.setDescription(resultSet.getString("description"));
                 task.setNodes(resultSet.getString("nodes"));

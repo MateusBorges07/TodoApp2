@@ -18,10 +18,10 @@ public class Main {
 
 
 
-        project.setName("novo nome do projeto");
-        projectController.update(project);
-
-        List<Project>projects = projectController.getAll();
-        System.out.println("total de projetos = "+projects.size());
+//        project.setName("novo nome do projeto");
+//        projectController.update(project);
+//
+//        List<Project>projects = projectController.getAll();
+//        System.out.println("total de projetos = "+projects.size());
     }
 }

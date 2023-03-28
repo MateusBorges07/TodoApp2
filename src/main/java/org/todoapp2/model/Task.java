@@ -1,7 +1,8 @@
 package org.todoapp2.model;
 
-import javax.xml.crypto.Data;
+
 import java.sql.Date;
+
 
 public class Task {
     private int id;
@@ -10,11 +11,11 @@ public class Task {
     private String description;
     private String nodes;
     private boolean isCompleted;
-    private Data deadline;
-    private Data createdAt;
-    private Data updatedAt;
+    private Date deadline;
+    private Date createdAt;
+    private Date updatedAt;
 
-    public Task(int id, int idProject, String name, String description, String nodes, boolean isCompleted, Data deadline, Data createdAt, Data updatedAt) {
+    public Task(int id, int idProject, String name, String description, String nodes, boolean isCompleted, Date deadline, Date createdAt, Date updatedAt) {
         this.id = id;
         this.idProject = idProject;
         this.name = name;
@@ -25,7 +26,10 @@ public class Task {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+public Task(){
 
+
+}
 
 
     public int getId() {
@@ -68,35 +72,36 @@ public class Task {
         this.nodes = nodes;
     }
 
-    public boolean isCompleted() {
+    public boolean isIsCompleted() {
         return isCompleted;
     }
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
+    public void setIsCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 
-    public Data getDeadline() {
+
+    public Date getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Data deadline) {
+    public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 
-    public Data getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Data createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Data getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Data updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
