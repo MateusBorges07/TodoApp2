@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package org.todoapp2.view;
 
-import controller.TaskDAO;
+import org.todoapp2.controller.TaskController;
 import java.awt.HeadlessException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,8 +13,8 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.Project;
-import model.Task;
+import org.todoapp2.model.Project;
+import org.todoapp2.model.Task;
 
 /**
  *
@@ -22,7 +22,7 @@ import model.Task;
  */
 public class TaskDialogScreen extends javax.swing.JDialog {
 
-    TaskDAO taskDAO;
+    Task task;
     Project project;
 
     public TaskDialogScreen(java.awt.Frame parent, boolean modal) {
@@ -211,7 +211,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
 
             task.setDeadline(deadline);
             task.setCompleted(false);
-            taskDAO.save(task);
+            task.save(task);
 
             JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
             this.dispose();
@@ -280,7 +280,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void initDataAccessObjects() {
-        taskDAO = new TaskDAO();
+        task = new Task();
     }
 
     private void centralizeTaskDialogScreen() {

@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.todoapp2.view;
 
-import controller.ProjectDAO;
-import controller.TaskDAO;
+import org.todoapp2.controller.ProjectController;
+import org.todoapp2.controller.TaskController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -16,11 +11,11 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import model.Project;
-import model.Task;
-import util.ButtonColumnCellRederer;
-import util.StatusColumnCellRenderer;
-import util.TaskTableModel;
+import org.todoapp2.model.Project;
+import org.todoapp2.model.Task;
+//import java.util.ButtonColumnCellRederer;
+//import util.StatusColumnCellRenderer;
+import org.todoapp2.util.TaskTableModel;
 
 /**
  *
@@ -31,8 +26,8 @@ public class MainScreen extends javax.swing.JFrame {
     DefaultListModel projectsModel;
     TaskTableModel tasksModel;
 
-    ProjectDAO projectDAO;
-    TaskDAO taskDAO;
+    Project project;
+    Task task;
 
     public MainScreen() {
         initComponents();
@@ -373,7 +368,7 @@ public class MainScreen extends javax.swing.JFrame {
             case 1:
                 break;
             case 3:
-                taskDAO.update(task);
+                task.update(task);
                 break;
             case 4:
                 JOptionPane.showMessageDialog(rootPane, "Editar a tarefa");
@@ -448,12 +443,12 @@ public class MainScreen extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initDataAccessObjects() {
-        projectDAO = new ProjectDAO();
-        taskDAO = new TaskDAO();
+        project= new Project();
+        task = new Task();
     }
 
     private void loadProjects() {
-        List<Project> projects = projectDAO.getAll();
+        List<Project> projects = project.getAll();
 
         projectsModel.clear();
 
@@ -464,7 +459,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     private void loadTasks(int projectId) {
-        List<Task> tasks = taskDAO.getByProjectId(projectId);
+        List<Task> tasks = task.getIdProject(projectId);
 
         tasksModel.setTasks(tasks);
         showJTableTasks(!tasks.isEmpty());
@@ -511,7 +506,7 @@ public class MainScreen extends javax.swing.JFrame {
 
                 if (columnIndex == 3) {
                     Task task = tasksModel.getTasks().get(rowIndex);
-                    taskDAO.update(task);
+                    task.update(task);
                 }
             }
         });

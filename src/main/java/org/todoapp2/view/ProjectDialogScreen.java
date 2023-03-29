@@ -1,16 +1,13 @@
-package view;
+package org.todoapp2.view;
 
-import controller.ProjectDAO;
+import org.todoapp2.controller.ProjectController;
 import javax.swing.JOptionPane;
-import model.Project;
+import org.todoapp2.model.Project;
+import org.todoapp2.model.Task;
 
-/**
- *
- * @author Marcio Michelluzzi
- */
 public class ProjectDialogScreen extends javax.swing.JDialog {
 
-    ProjectDAO projectDAO;
+    Project project;
 
     public ProjectDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -149,7 +146,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
             project.setName(jTextFieldName.getText());
             project.setDescription(jTextAreaDescription.getText());
 
-            projectDAO.save(project);
+            project.save(project);
 
             JOptionPane.showMessageDialog(rootPane, "Projeto salva com sucesso");
             dispose();
@@ -214,7 +211,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void initDataAccessObjects() {
-        projectDAO = new ProjectDAO();
+        Project = new Project();
     }
 
     private void centralizeProjectDialogScreen() {
