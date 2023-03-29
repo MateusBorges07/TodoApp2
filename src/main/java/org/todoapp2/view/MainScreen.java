@@ -374,7 +374,7 @@ public class MainScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Editar a tarefa");
                 break;
             case 5:
-                taskDAO.removeById(task.getId());
+                task.removeById(task.getId());
                 tasksModel.getTasks().remove(task);
                 
                 int projectIndex = jListProjects.getSelectedIndex();
