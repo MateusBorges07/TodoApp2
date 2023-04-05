@@ -94,7 +94,7 @@ public class TaskController {
 
     }
 
-    public void removeById(int taskId) throws SQLException {
+    public void removeById(int taskId)  {
 
         String sql = "DELETE FROM task where id = ?";
         Connection connection = null;
@@ -117,7 +117,42 @@ public class TaskController {
     }
 
     public List<Task> getAll(int idProject) {
-
-                return null;
+        String sql ="SELECT * FROM tasks WHERE idProjetct = ?";
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        //Lista de Taredas que sera devolvida quando a chamada do metodo acontecer
+        List<Task> tasks = new ArrayList<Task>();
+        try {
+            //criação da conexão
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            //setando o valor que corresponde ao filtro de busca
+            statement.setInt(1, idProject);
+            //valor retornado pela execucao da query
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Task task = new Task();
+                task.setId(resultSet.getInt("id"));
+                task.setIdProject(resultSet.getInt("idProjetcct"));
+                task.setIdProject(resultSet.getInt("idProject"));
+                task.setName(resultSet.getString("name"));
+                task.setDescription(resultSet.getString("description"));
+                task.setNodes(resultSet.getString("nodes"));
+                task.setIsCompleted(resultSet.getBoolean("completed"));
+                task.setCreatedAt(resultSet.getDate("createAt"));
+                task.setUpdatedAt(resultSet.getDate("updateAt"));
+                tasks.add(task);
+            }
+        }catch (Exception ex){
+            throw new RuntimeException("ERRO ao LISTAR a tarefa"+ex.getMessage(),ex);
+        }finally {
+            ConnectionFactory.closeConecction(connection,statement, resultSet);
+        }
+        //lista de tarefas que foi criada e carregada do banco de dados
+        return tasks;
     }
+
 }
+
+

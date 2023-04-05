@@ -77,4 +77,7 @@ public class Project {
                 ", updatedAt=" + updatedAt +
                 '}';
     }
+
+    public void save(Project project) {
+    }
 }

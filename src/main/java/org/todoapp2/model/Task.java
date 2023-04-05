@@ -119,4 +119,7 @@ public Task(){
                 ", updatedAt=" + updatedAt +
                 '}';
     }
+
+    public void setDeadline(java.util.Date deadline) {
+    }
 }

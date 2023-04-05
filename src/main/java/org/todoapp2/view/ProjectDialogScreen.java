@@ -3,7 +3,7 @@ package org.todoapp2.view;
 import org.todoapp2.controller.ProjectController;
 import javax.swing.JOptionPane;
 import org.todoapp2.model.Project;
-import org.todoapp2.model.Task;
+
 
 public class ProjectDialogScreen extends javax.swing.JDialog {
 
@@ -148,10 +148,11 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
 
             project.save(project);
 
+
             JOptionPane.showMessageDialog(rootPane, "Projeto salva com sucesso");
             dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e);
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 
@@ -211,7 +212,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void initDataAccessObjects() {
-        Project = new Project();
+        project = new Project();
     }
 
     private void centralizeProjectDialogScreen() {
